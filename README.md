@@ -16,18 +16,22 @@
 
 ## 使用方法
 
-首先，用apnic或ipip目录下的脚本获取各ISP和国内IP列表
+首先，参考ros-basic.cfg, 配置好ros及到各个ISP到路由表, 本样本设置了电信/联通和移动三家ISP，可自行进行裁剪。
+
+然后，用ipip目录下的脚本获取各ISP和国内IP列表
 
 对于需要特殊调整的路由策略，可以将目标IP地址记入FIX_ISP文件中，每个文件对应相应的ISP出口。
 
 然后执行:
 
 ```
-ros-script.sh > ros-route.rsc
+$ ./ros-route.sh > ros-route.rsc
 ```
 
 生成ros的脚本，将该脚本上传到ros上用import命令执行即可。
 
 ```
+$ scp ros-route.rsc admin@ros:/
+$ ssh admin@ros
 [admin@MikroTik] > /import ros-route.rsc
 ```
